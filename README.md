@@ -44,7 +44,7 @@ npm -v
 
 ### 2. Clone the Repository
 ```bash
-git clone https://github.com/lopersonal355-lab/jarvis-command-center-axel.git
+git clone https://github.com/Axl07s/jarvis-command-center-axel.git
 cd jarvis-command-center-axel
 ```
 
@@ -162,45 +162,3 @@ vercel deploy --prod
 └── package.json                   # Dependencies and npm scripts
 ```
 
----
-
-## Handover and Ownership Confirmation
-
-1. Complete Editable Source Code: 100% of source files, assets, TypeScript definitions, tests, and configurations are committed to the GitHub repository.
-2. Developer-Ready Architecture: Decoupled schemas in `/types` and `/mocks` for direct connection to Supabase, n8n, Obsidian, or live WebSockets in Milestone 3.
-3. Commercial Ownership: Full commercial ownership and unrestricted modification rights transferred to the client.
-
----
-
-## Project Roadmap and Milestone Checklists
-
-### Milestone 1: Core Architecture, 7 Views & Dominant Chief Brain ($250 USD) - [APPROVED]
-- [x] Initial project setup (Next.js 15 App Router, React 19, TypeScript, Tailwind CSS).
-- [x] Strict sci-fi color palette implementation (#02040a deep navy background, #00E5FF electric cyan energy, #7B2CBF violet accents).
-- [x] Dominant Chief Brain centerpiece on main dashboard (/) with 5 concentric orbital rings (R = 82px to 248px), radiant photon particles, and rotating telemetry brackets.
-- [x] Removal of horizontal waveform line crossing through the circular reactor core across all views and modes.
-- [x] Peripheral layout restructuring: compacted top HUD metrics (n8n, Docker, Obsidian, Agent Activity), relocated Shopify Telemetry to bottom-left, and placed Finance summary on right.
-- [x] Baseline implementation of all 7 core views (/ , /agent-network, /approvals, /finance, /knowledge, /security, /voice).
-- [x] Fullscreen Immersive Voice Mode focal portal overlay with real-time state toggling.
-- [x] Playwright E2E automated test suite and live Vercel staging deployment.
-- [x] Formal review and milestone sign-off by client.
-
-### Milestone 2: ElevenLabs TTS Integration, Audio Reactivity & Voice Status ($250 USD) - [APPROVED BY CLIENT / SUBMITTED]
-- [x] Server-side ElevenLabs TTS API Route (/api/voice) proxying requests securely with zero browser API key exposure.
-- [x] Built-in high-fidelity native English and Spanish fallback engines when ELEVENLABS_API_KEY is not configured.
-- [x] Web Audio API AnalyserNode integration for real-time audio spectrum analysis and reactor pulsing.
-- [x] 3-state voice reactivity cycle: Listening -> Processing (synthesizing) -> Speaking (playing audio) -> Listening.
-- [x] Interactive "TEST AUDIO / TTS" button on the Chief Brain centerpiece header.
-- [x] Three clean natural voice presets: Jarvis Prime (English Male), FRIDAY Neural (English Female), and Elena (Spanish Voice / España).
-- [x] Real-time speech speed and pacing slider (0.6x to 1.2x) with quick presets (0.75x Lyrics, 0.85x Calm, 1.0x Fast).
-- [x] Interactive custom speech synthesis console with song lyrics benchmark validation (/voice).
-- [x] Environment configuration template (.env.example) and Vercel documentation.
-- [x] Playwright E2E suite updated (11/11 automated tests passing on live staging).
-
-### Milestone 3: Polish, Schemas & Master Template Configuration ($200 USD) - [COMPLETED / READY FOR CLIENT SIGN-OFF]
-- [x] Final UI and interaction polish across all 7 views and peripheral widgets with strict sci-fi token consistency.
-- [x] Complete decoupled TypeScript interfaces and JSON mock schemas for Supabase, n8n, and Obsidian integrations (src/types/schemas.ts).
-- [x] Master template architecture with centralized configuration file (src/config/jarvis.config.ts) managing branding, modules, agent roster, and API connections.
-- [x] Comprehensive Master Template Duplication Guide (docs/TEMPLATE_GUIDE.md).
-- [x] Full test suite verification (11/11 automated Playwright tests passing).
-- [x] Final project verification, GitHub sync, and commercial handover delivery.
