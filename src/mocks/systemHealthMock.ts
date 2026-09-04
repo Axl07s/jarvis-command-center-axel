@@ -1,0 +1,45 @@
+import { SystemHealthData } from "@/types/system";
+
+export const systemHealthMock: SystemHealthData = {
+  cpuUsage: {
+    id: "cpu-core",
+    name: "NEURAL PROCESSOR",
+    value: 24.8,
+    unit: "%",
+    status: "nominal",
+    trend: [18, 22, 29, 21, 25, 24.8],
+    details: "16 Cores Online · Clock 4.8 GHz",
+  },
+  memoryUsage: {
+    id: "mem-bus",
+    name: "SYNAPSE MEMORY",
+    value: 41.2,
+    unit: "%",
+    status: "nominal",
+    trend: [38, 39, 40, 42, 41, 41.2],
+    details: "26.4 GB / 64.0 GB Allocated",
+  },
+  gpuMemory: {
+    id: "gpu-vram",
+    name: "HOLOGRAPHIC VRAM",
+    value: 58.6,
+    unit: "%",
+    status: "nominal",
+    trend: [50, 52, 55, 60, 59, 58.6],
+    details: "14.1 GB / 24.0 GB VRAM",
+  },
+  networkLatency: {
+    id: "net-bus",
+    name: "BACKBONE LATENCY",
+    value: 12,
+    unit: "ms",
+    status: "nominal",
+    trend: [15, 14, 12, 11, 13, 12],
+    details: "Throughput 1.2 Gbps · Zero Drop",
+  },
+  uptimeSeconds: 849200,
+  quantumEfficiency: 99.4,
+  activeContainers: 8,
+  unresolvedAlerts: 0,
+  lastDiagnosticTimestamp: "2026-08-21 20:45:00 UTC",
+};
