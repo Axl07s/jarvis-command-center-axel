@@ -13,18 +13,23 @@ interface HolographicSphereProps {
 export const HolographicSphere: React.FC<HolographicSphereProps> = ({ state, size = 460, audioAnalyser }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
+  const mouseOffsetRef = useRef({ x: 0, y: 0 });
+  const stateRef = useRef(state);
+
+  useEffect(() => {
+    stateRef.current = state;
+  }, [state]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
-    setMouseOffset({ x, y });
+    mouseOffsetRef.current = { x, y };
   };
 
   const handleMouseLeave = () => {
-    setMouseOffset({ x: 0, y: 0 });
+    mouseOffsetRef.current = { x: 0, y: 0 };
   };
 
   // State-driven rotation speeds (seconds per full 360 turn)
@@ -58,7 +63,7 @@ export const HolographicSphere: React.FC<HolographicSphereProps> = ({ state, siz
     if (!ctx) return;
 
     let animId: number;
-    const dpr = typeof window !== "undefined" ? Math.min(window.devicePixelRatio || 1, 2) : 1;
+    const dpr = typeof window !== "undefined" ? Math.min(window.devicePixelRatio || 1, 1.5) : 1;
     const canvasSize = size;
     canvas.width = canvasSize * dpr;
     canvas.height = canvasSize * dpr;
@@ -69,7 +74,7 @@ export const HolographicSphere: React.FC<HolographicSphereProps> = ({ state, siz
     const coreRadius = canvasSize * 0.38;
 
     // 1. Adaptive 3D Holographic Wireframe Sphere Nodes (Optimized for Mobile/Desktop)
-    const numNodes = Math.min(100, Math.max(60, Math.floor(canvasSize * 0.25)));
+    const numNodes = Math.min(80, Math.max(50, Math.floor(canvasSize * 0.2)));
     const sphereNodes: { theta: number; phi: number; baseR: number; size: number; isCyan: boolean }[] = [];
     for (let i = 0; i < numNodes; i++) {
       const theta = Math.acos(2 * Math.random() - 1);
@@ -86,7 +91,7 @@ export const HolographicSphere: React.FC<HolographicSphereProps> = ({ state, siz
     // 2. Pre-allocate Concentric Orbital Flux Photons
     const orbitalFlux: { radiusRatio: number; angle: number; speed: number; size: number; isCyan: boolean }[] = [];
     const fluxRadii = [0.22, 0.32, 0.42, 0.52, 0.62, 0.72, 0.82];
-    for (let i = 0; i < 45; i++) {
+    for (let i = 0; i < 35; i++) {
       const radiusRatio = fluxRadii[Math.floor(Math.random() * fluxRadii.length)];
       orbitalFlux.push({
         radiusRatio,
@@ -107,12 +112,13 @@ export const HolographicSphere: React.FC<HolographicSphereProps> = ({ state, siz
 
       ctx.clearRect(0, 0, canvasSize, canvasSize);
 
-      const speedMultiplier = state === "processing" ? 3.0 : state === "speaking" ? 1.8 : 1.0;
+      const currentState = stateRef.current;
+      const speedMultiplier = currentState === "processing" ? 3.0 : currentState === "speaking" ? 1.8 : 1.0;
       rotY += 0.35 * speedMultiplier * dt;
       rotX += 0.12 * speedMultiplier * dt;
 
-      const tiltX = mouseOffset.y * 0.5;
-      const tiltY = mouseOffset.x * 0.5;
+      const tiltX = mouseOffsetRef.current.y * 0.5;
+      const tiltY = mouseOffsetRef.current.x * 0.5;
       const effectiveRotX = rotX + tiltX;
       const effectiveRotY = rotY + tiltY;
 
@@ -122,7 +128,7 @@ export const HolographicSphere: React.FC<HolographicSphereProps> = ({ state, siz
       const sinX = Math.sin(effectiveRotX);
 
       const fov = 380;
-      const speakPulse = state === "speaking" ? 1 + Math.sin(currentTime * 0.007) * 0.08 : 1;
+      const speakPulse = currentState === "speaking" ? 1 + Math.sin(currentTime * 0.007) * 0.08 : 1;
 
       // Draw 3D Holographic Wireframe Nodes (Lightweight & Smooth)
       for (let i = 0; i < sphereNodes.length; i++) {
@@ -146,10 +152,10 @@ export const HolographicSphere: React.FC<HolographicSphereProps> = ({ state, siz
         const color = node.isCyan ? "#00E5FF" : "#7B2CBF";
 
         ctx.fillStyle = color;
-        ctx.globalAlpha = depthAlpha * (state === "speaking" ? 1 : 0.85);
+        ctx.globalAlpha = depthAlpha * (currentState === "speaking" ? 1 : 0.85);
 
         ctx.beginPath();
-        ctx.arc(projX, projY, node.size * scale * (state === "speaking" ? 1.3 : 1), 0, Math.PI * 2);
+        ctx.arc(projX, projY, node.size * scale * (currentState === "speaking" ? 1.3 : 1), 0, Math.PI * 2);
         ctx.fill();
       }
 
@@ -163,10 +169,10 @@ export const HolographicSphere: React.FC<HolographicSphereProps> = ({ state, siz
 
         const fColor = flux.isCyan ? "#00E5FF" : "#7B2CBF";
         ctx.fillStyle = fColor;
-        ctx.globalAlpha = 0.85 * (state === "speaking" ? 1 : 0.75);
+        ctx.globalAlpha = 0.85 * (currentState === "speaking" ? 1 : 0.75);
 
         ctx.beginPath();
-        ctx.arc(fX, fY, flux.size * (state === "speaking" ? 1.4 : 1), 0, Math.PI * 2);
+        ctx.arc(fX, fY, flux.size * (currentState === "speaking" ? 1.4 : 1), 0, Math.PI * 2);
         ctx.fill();
       }
 
@@ -178,7 +184,7 @@ export const HolographicSphere: React.FC<HolographicSphereProps> = ({ state, siz
     return () => {
       cancelAnimationFrame(animId);
     };
-  }, [state, size, mouseOffset]);
+  }, [size]);
 
   return (
     <div
@@ -317,11 +323,10 @@ export const HolographicSphere: React.FC<HolographicSphereProps> = ({ state, siz
             stroke="url(#reactorCyanViolet)"
             strokeWidth="2.2"
             strokeDasharray="80 60 20 60"
-            opacity="0.8"
-            filter="url(#cyanPortalGlow)"
+            opacity="0.85"
           />
-          <circle cx="508" cy="260" r="4" fill="#00E5FF" filter="url(#cyanPortalGlow)" />
-          <circle cx="12" cy="260" r="4" fill="#7B2CBF" filter="url(#violetPortalGlow)" />
+          <circle cx="508" cy="260" r="4" fill="#00E5FF" opacity="0.9" />
+          <circle cx="12" cy="260" r="4" fill="#7B2CBF" opacity="0.9" />
           <circle cx="260" cy="12" r="3" fill="#00E5FF" opacity="0.85" />
           <circle cx="260" cy="508" r="3" fill="#7B2CBF" opacity="0.85" />
         </motion.g>
@@ -343,7 +348,6 @@ export const HolographicSphere: React.FC<HolographicSphereProps> = ({ state, siz
             strokeWidth="2.5"
             strokeDasharray="50 20 100 20 25 30"
             opacity={state === "speaking" ? 0.95 : 0.8}
-            filter="url(#violetPortalGlow)"
           />
           {/* Scientific Chevron Brackets */}
           <path d="M 470 252 L 478 260 L 470 268" fill="none" stroke="#00E5FF" strokeWidth="2" />
