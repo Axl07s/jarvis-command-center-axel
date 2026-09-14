@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://jarvis-command-center-ui.vercel.app/projects/jarvis_01.png" alt="Jarvis Command Center" width="100%" />
+  <img src="https://raw.githubusercontent.com/Axl07s/portfolio-axel/master/public/projects/jarvis_01.png" alt="Jarvis Command Center" width="100%" />
 
   # Jarvis AI Command Center
   **Operational Command Interface & 9-Node Agentic Mesh Orchestrator**
@@ -46,4 +46,5 @@ Jarvis is a high-performance web-based command center designed to orchestrate a 
 <div align="center">
   <i>Engineered for production by <a href="https://github.com/Axl07s">Axel Molineros</a>.</i>
 </div>
+
 
