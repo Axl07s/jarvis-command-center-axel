@@ -12,10 +12,10 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#02040a] text-[#E2E8F0] flex flex-col font-sans relative overflow-x-hidden selection:bg-[#00E5FF]/30 selection:text-[#00E5FF]">
+    <div className="min-h-screen bg-[#02040a] text-[#E2E8F0] flex flex-col font-sans relative overflow-x-hidden w-full max-w-full selection:bg-[#00E5FF]/30 selection:text-[#00E5FF]">
       {/* Sci-Fi Background Glow Elements */}
-      <div className="fixed top-0 left-1/4 w-[500px] h-[500px] bg-[#00E5FF]/5 rounded-full blur-[100px] pointer-events-none -z-10 [transform:translateZ(0)] [contain:strict]" />
-      <div className="fixed bottom-0 right-1/4 w-[500px] h-[500px] bg-[#7B2CBF]/8 rounded-full blur-[100px] pointer-events-none -z-10 [transform:translateZ(0)] [contain:strict]" />
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-72 sm:w-[500px] h-72 sm:h-[500px] bg-[#00E5FF]/5 rounded-full blur-[80px] sm:blur-[100px] pointer-events-none -z-10 [transform:translateZ(0)] [contain:strict] overflow-hidden" />
+      <div className="fixed bottom-0 right-0 w-72 sm:w-[500px] h-72 sm:h-[500px] bg-[#7B2CBF]/8 rounded-full blur-[80px] sm:blur-[100px] pointer-events-none -z-10 [transform:translateZ(0)] [contain:strict] overflow-hidden" />
 
       {/* Header HUD */}
       <HeaderHUD />

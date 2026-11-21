@@ -192,7 +192,7 @@ export const HolographicSphere: React.FC<HolographicSphereProps> = ({ state, siz
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ width: "100%", maxWidth: size, height: "auto", aspectRatio: "1 / 1" }}
-      className="relative flex items-center justify-center select-none cursor-pointer will-change-transform transform-gpu max-h-[75vh]"
+      className="relative flex items-center justify-center select-none cursor-pointer will-change-transform transform-gpu max-h-[75vh] overflow-hidden"
     >
       {/* 1. Deep Core Radiant Aura Bloom */}
       <motion.div
@@ -217,7 +217,7 @@ export const HolographicSphere: React.FC<HolographicSphereProps> = ({ state, siz
       {/* 3. High-Definition Concentric Precision Circular Multi-Ring SVG Reactor */}
       <svg
         viewBox="0 0 520 520"
-        className="absolute inset-0 w-full h-full pointer-events-none overflow-visible transform-gpu"
+        className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden transform-gpu"
       >
         <defs>
           <linearGradient id="reactorCyanViolet" x1="0%" y1="0%" x2="100%" y2="100%">

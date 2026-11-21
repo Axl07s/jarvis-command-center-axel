@@ -112,7 +112,7 @@ export const ChiefBrainCenterpiece: React.FC<ChiefBrainCenterpieceProps> = ({
       </div>
 
       {/* Main Central Canvas: Large Centered Self-Contained Neural Reactor Core */}
-      <div className="relative w-full flex-1 flex flex-col items-center justify-center py-2 my-1 max-w-[440px] mx-auto">
+      <div className="relative w-full flex-1 flex flex-col items-center justify-center py-2 my-1 max-w-[320px] sm:max-w-[440px] mx-auto overflow-hidden">
         <HolographicSphere state={voiceState} size={440} audioAnalyser={analyserRef.current} />
       </div>
 
